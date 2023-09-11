@@ -1,4 +1,8 @@
 import express from "express";
+import moment from "moment";
+
+
+const utc_time = moment().utc().format()
 
 const app = express();
 
@@ -30,11 +34,12 @@ function getCurrentUTCTimeWithWindow() {
   const currentTimeWithWindow = now.getTime() + windowOffset;
   const dateWithWindow = new Date(currentTimeWithWindow);
 
-  return dateWithWindow;
+  return dateWithWindow.toISOString().split('.')[0] + 'Z';
 }
-// .toISOString().split('.')[0] + 'Z'
+// 2023-09-11T17:58:31Z
 
 const utcTimeWithWindow = getCurrentUTCTimeWithWindow();
+// console.log(utcTimeWithWindow);
 
 const data = {
   slack_name: "mary_elise_angbo",
@@ -50,7 +55,7 @@ app.get('/api', (req, res) => {
         const response = {
             slack_name: data.slack_name,
             current_day: day,
-            utc_time: utcTimeWithWindow,
+            utc_time: utc_time,
             track: "backend",
             github_file_url: 'https://github.com/Elise-Oyi/Hng-task1-backend/blob/main/server.js',
             github_repo_url: 'https://github.com/Elise-Oyi/Hng-task1-backend',
