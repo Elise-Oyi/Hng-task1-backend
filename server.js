@@ -30,7 +30,7 @@ function getCurrentUTCTimeWithWindow() {
   const currentTimeWithWindow = now.getTime() + windowOffset;
   const dateWithWindow = new Date(currentTimeWithWindow);
 
-  return dateWithWindow.toISOString();
+  return dateWithWindow.toISOString().split('.')[0] + 'Z';
 }
 
 
