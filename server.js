@@ -30,12 +30,11 @@ function getCurrentUTCTimeWithWindow() {
   const currentTimeWithWindow = now.getTime() + windowOffset;
   const dateWithWindow = new Date(currentTimeWithWindow);
 
-  return dateWithWindow.toISOString().split('.')[0] + 'Z';
+  return dateWithWindow;
 }
-
+// .toISOString().split('.')[0] + 'Z'
 
 const utcTimeWithWindow = getCurrentUTCTimeWithWindow();
-// console.log(utcTimeWithWindow);
 
 const data = {
   slack_name: "mary_elise_angbo",
